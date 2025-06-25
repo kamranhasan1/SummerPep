@@ -9,9 +9,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-
-  
   "dependencies": {
+    "body-parser": "^2.2.0",
     "readline-sync": "^1.4.10"
   }
 }
