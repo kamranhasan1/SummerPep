@@ -56,12 +56,12 @@ app.post("/api/category", (req, resp) => {
     let body = req.body;
     console.log("Request Body:", body); // Debug log
     
-    if (!body.topic_name) { // ✅ Changed from cate_name to topic_name
+    if (!body.topic_name) {  
         return resp.status(400).json({ msg: "Mandatory field 'topic_name' is missing!" });
     }
 
     connection.query(
-        "INSERT INTO master_category (topic_name, description, is_enable) VALUES (?, ?, ?)", // ✅ Updated column name
+        "INSERT INTO master_category (topic_name, description, is_enable) VALUES (?, ?, ?)", 
         [body.topic_name, body.description, body.is_enable],
         (error, result) => {
             if (error) {
@@ -112,7 +112,7 @@ this code will also work for deletion
   //~~~~~~~~~~~~~~put method  
   app.put("/api/category/:id", (req, resp) => {
     const id = req.params.id;
-    const { topic_name, description, is_enable } = req.body; // ✅ extract from body
+    const { topic_name, description, is_enable } = req.body;  
   
     if (!id) {
       return resp.status(404).json({ msg: "Error: id is missing!" });
