@@ -139,4 +139,24 @@ this code will also work for deletion
     console.log("Server is running on port 3000");
   });
 
- 
+ //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ api to write user signup details
+
+  app.post("/api/signup", (req, res) => {
+    const { name, email, password } = req.body;
+  
+    if (!name || !email || !password) {
+      return res.status(400).json({ msg: "All fields are required: name, email, password" });
+    }
+  
+    const sql = `INSERT INTO users (name, email, password) VALUES (?, ?, ?)`;
+    const values = [name, email, password];
+  
+    connection.query(sql, values, (err, result) => {
+      if (err) {
+        return res.status(500).json({ msg: "Error inserting user", error: err });
+      }
+  
+      return res.status(200).json({ msg: "User registered successfully" });
+    });
+  });
+  
