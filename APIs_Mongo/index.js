@@ -1,13 +1,43 @@
 const express = require("express");
-const router = express.Router();
-const Category = require("./UserSchema"); // Ensure consistent casing
+const mongoose = require("mongoose");
 
-// Middleware to parse JSON and URL-encoded data
-router.use(express.json());
-router.use(express.urlencoded({ extended: false }));
+const app = express();
+const PORT = 3000;
+
+// Connect to MongoDB
+mongoose
+  .connect("mongodb://localhost/first_mongoDB", { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("Database connected"))
+  .catch((err) => console.error("Error connecting to database", err));
+
+// Category Schema and Model
+const categorySchema = new mongoose.Schema({
+  categoryName: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+  },
+  is_enable: {
+    type: String,
+  },
+}, { timestamps: true });
+
+const Category = mongoose.model("Category", categorySchema);
+
+// Middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+// Routes
+
+app.get("/", (req, res) => {
+  res.send("<h1>What's Good!</h1>");
+});
 
 // Display categories in HTML table
-router.get("/category", async (req, res) => {
+app.get("/category", async (req, res) => {
   try {
     const categoryList = await Category.find({});
     let html = `
@@ -35,8 +65,8 @@ router.get("/category", async (req, res) => {
   }
 });
 
-// JSON API to get all categories
-router.get("/api/category", async (req, res) => {
+// Get all categories as JSON
+app.get("/api/category", async (req, res) => {
   try {
     const categoryList = await Category.find({});
     res.status(200).json({ msg: categoryList });
@@ -47,9 +77,10 @@ router.get("/api/category", async (req, res) => {
 });
 
 // Insert new category
-router.post("/api/category", async (req, res) => {
+app.post("/api/category", async (req, res) => {
   const { categoryName, description, is_enable } = req.body;
 
+  // Basic validation
   if (!categoryName) {
     return res.status(400).json({ msg: "categoryName is required" });
   }
@@ -67,4 +98,7 @@ router.post("/api/category", async (req, res) => {
   }
 });
 
-module.exports = router;
+// Start server
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

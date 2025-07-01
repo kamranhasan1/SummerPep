@@ -1,24 +1,17 @@
-let mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
-// creating a user category schema
-
-
+// Category Schema
 const categorySchema = new mongoose.Schema({
-	categoryName:{
-		type: String,
-		required: true,
-	},
-	description:{
-		type:String,
+  categoryName: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+  },
+  is_enable: {
+    type: String,
+  },
+}, { timestamps: true });
 
-	},
-	is_enable:{
-		type: String,
-	},},
-
-	{timestamps:true}
-
-);
-
-//creating a model 
-module.exports = mongoose.model("category", categorySchema)
+module.exports = mongoose.model("Category", categorySchema);
