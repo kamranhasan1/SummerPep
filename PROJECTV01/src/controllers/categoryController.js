@@ -13,9 +13,9 @@ const getCategoryList = async (req, resp) => {
         return resp.status(200).json({
             success: true,
             message: categoryData
-        })
+        })// categoryDta
     }
-  } catch (error) {
+  } catch (error) { 
     throw error;
   }
 };
