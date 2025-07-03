@@ -68,7 +68,7 @@ app.post("/api/category", (req, resp) => {
                 console.error("SQL Error:", error);
                 return resp.status(500).json({ msg: "Database error!" });
             }
-            return resp.status(200).json({ msg: "Category added successfully!" });
+            return resp.status(200).json({ msg: "Category added successfully!" });t
         }
     );
 });
@@ -139,6 +139,8 @@ this code will also work for deletion
     console.log("Server is running on port 3000");
   });
 
+
+  
  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ api to write user signup details
 
   app.post("/api/signup", (req, res) => {
