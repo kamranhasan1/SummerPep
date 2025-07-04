@@ -3,7 +3,7 @@ import './Child.css';
 const Child = () => {
 	let name = "Aryan";
 	let designation = "hardCore F1, and I know you gonna see this F1";
-	let skills = ["Crazy Driving","offcourse F1","and yamaaaal"];
+	let skills = ["Crazy Driving","of course F1","and yamaaaal"];
 	return (
 		<div>
 			
