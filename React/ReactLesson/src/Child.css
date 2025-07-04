@@ -1,0 +1,25 @@
+.intro {
+	margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;  
+}
+.intro span {
+    font-weight: bold;
+}
+
+.des{
+	margin: 10px 0;
+    padding: 10px;
+    background-color: #13e0ad;
+    border-radius: 5px;
+
+}
+
+.des span{
+	font-weight: bold;
+}
+.skills {
+    color: #da870c; 
+}
